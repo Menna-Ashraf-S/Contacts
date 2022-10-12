@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/contact.dart';
 import 'package:flutter_pro/dbHelper.dart';
-import 'package:flutter_pro/test.dart';
-import 'package:intl/intl.dart';
-import 'package:roundcheckbox/roundcheckbox.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_pro/details.dart';
+
 
 
 
@@ -53,7 +51,7 @@ class _HomeState extends State < Home > {
 
         floatingActionButton: FloatingActionButton(
           child:
-           Icon(Icons.add , size: 28, color: Colors.white,),
+           Icon(Icons.add , size: 30, color: Colors.white,),
 
           onPressed: (){
            showModalBottomSheet(
@@ -204,6 +202,7 @@ class _HomeState extends State < Home > {
                           return Expanded(
                             child: GridView.count(
                               crossAxisCount: 2 ,
+                              childAspectRatio: (1 / 2),
                               scrollDirection: Axis.vertical, 
                               crossAxisSpacing: 15, 
                               mainAxisSpacing: 15, 
@@ -212,46 +211,52 @@ class _HomeState extends State < Home > {
                                 return
                                 Center(
                                   child: 
-                                  Column(children:<Widget> [
+                                  Column(
+                                    children:<Widget> [
+                                                   
+                                      Container(
+                                      width: 120,
+                                      height: 120 ,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.grey ,width: 1 ,
+                                          ),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(75),
+                                          ),
+                                          ),
                                     
-                          
-                                    Container(
-                                    width: 120,
-                                    height: 120 ,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.grey ,width: 1 ,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(75),
-                                        ),
-                                        ),
-                                  
-                                    child:
-                                    ClipRRect( borderRadius: BorderRadius.circular (75),
-                                    child: Image.network('${contact.url}' ,
-                                    fit: BoxFit.cover, width: 120,height: 130 ,),
-                                  )
-                                     ),
-                          
-                                    TextButton(child: Text('${contact.name}',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold , fontSize: 20 , color: Colors.black
-                                    ),
-                                    ),
-                                    onPressed: () {
+                                      child:
+                                      ClipRRect( borderRadius: BorderRadius.circular (75),
+                                      child: Image.network('${contact.url}' ,
+                                      fit: BoxFit.cover, width: 120,height: 130 ,),
+                                    )
+                                       ),
+                                                            
+                                      TextButton(child: Text('${contact.name}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold , fontSize: 20 , color: Color.fromARGB(255, 70, 70, 70),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => Details(contact),
+                                            ),
+                                            );
+                                      },
+                                      ),
                                       
-                                    },
+                                      Text('${contact.number}',
+                                      style: TextStyle(
+                                        fontSize: 18 ,color: Colors.grey[700],
+                                      ),
+                                      ),
+                                                            
+                                    ],
                                     ),
-                                    
-                                    Text('${contact.number}',
-                                    style: TextStyle(
-                                      fontSize: 15 ,
-                                    ),
-                                    ),
-                          
-                                  ],
-                                  ),
+                                  
                                   
                                 ); 
                                 }

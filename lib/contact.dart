@@ -1,9 +1,9 @@
 class Contact {
 
   int ? id ;
-  String ? name ;
-  String ? number ;
-  String ? url ;
+  late String name ;
+  late String number ;
+  late String url ;
 
   Contact (dynamic obj){
      if (obj['id']!= null) {

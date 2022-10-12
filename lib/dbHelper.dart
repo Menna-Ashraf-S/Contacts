@@ -37,8 +37,15 @@ static final DbHelper _instance = DbHelper.internal();
       return await db.query('contacts');
      }
 
+     Future <int> update(Contact contact) async {
+      Database db = await createDatabase() ;
+      return db.update('contacts' , contact.toMap() , 
+      where: 'id = ?' , whereArgs: [contact.id]
+      );
+     }
+
      Future <int> delete (int id) async{
       Database db = await createDatabase() ;
-      return db.delete('contacts' , where: 'id = ?', whereArgs: [id]);
+      return await db.delete('contacts' , where: 'id = ?', whereArgs: [id]);
      }
 }
