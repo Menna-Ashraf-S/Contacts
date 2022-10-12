@@ -239,12 +239,15 @@ class _HomeState extends State < Home > {
                                       ),
                                       textAlign: TextAlign.center,
                                       ),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
+                                      onPressed: ()async {
+                                        await Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (context) => Details(contact),
                                             ),
                                             );
+                                            setState(() {
+                                              
+                                            });
                                       },
                                       ),
                                       
